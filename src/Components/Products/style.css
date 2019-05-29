@@ -1,0 +1,33 @@
+#container {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    list-style-type: none;
+}
+#container img {
+    width: 300px;
+}
+#container h3 {
+    text-transform: capitalize;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    letter-spacing: var(--mainSpacing);
+    text-align: center;
+}
+#container h4 {
+    color: var(--primaryColor);
+}
+#container button {
+    top: 70%;
+    background: var(--primaryColor);
+    border: none;
+    text-transform: uppercase;
+    padding: 0.5rem 0.75rem;
+    letter-spacing: var(--mainSpacing);
+    font-weight: bold;
+    transition: var(--mainTransition);
+    cursor: pointer;
+}
+#container button:hover{
+    color: white;
+}
