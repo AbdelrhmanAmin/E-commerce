@@ -5,18 +5,18 @@ class index extends Component {
     state = {
         show: false,
         item: {
-            img: this.props.Data[0].fields.image,
-            title: this.props.Data[0].fields.title,
-            price: this.props.Data[0].fields.price
+            img: '',
+            title: '',
+            price: ''
         }
     }
     onAdd = (x) => {
         let obj = {
             img: x.fields.image,
             title: x.fields.title,
-            price: x.fields.price
+            price: x.fields.price,
+            id: x.sys.id
         }
-        
         this.setState({
             show: true,
             item: obj
@@ -45,14 +45,17 @@ class index extends Component {
                     <div id='cart-overlay'>
                         <div id="cart">
                             {
-                                !this.state.show ? '' : <div id='cart-item'>
-                                <img src={this.state.item.img} />
-                                <div>
-                                    <h4>{this.state.item.title}</h4>
-                                    <h5>${this.state.item.price}</h5>
-                                    <span onClick={this.onDelete}>Remove</span>
-                                </div>
-                            </div>
+                                !this.state.show ? '' : 
+                                    <ul id='cart-item'>
+                                        <li key={this.state.item.id}>
+                                            <img src={this.state.item.img} />
+                                            <div>
+                                                <h4>{this.state.item.title}</h4>
+                                                <h5>${this.state.item.price}</h5>
+                                                <span onClick={this.onDelete}>Remove</span>
+                                            </div>
+                                        </li>
+                                    </ul>
                             }
                         </div>
                     </div>
