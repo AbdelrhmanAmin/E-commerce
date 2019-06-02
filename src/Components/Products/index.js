@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 import './style.css';
-import Cart from './../Cart';
 class index extends Component {
     state = {
-        show: false,
-        item: {
-            img: '',
-            title: '',
-            price: ''
-        }
+        item: []
     }
     onAdd = (x) => {
         let obj = {
@@ -19,12 +13,14 @@ class index extends Component {
         }
         this.setState({
             show: true,
-            item: obj
+            item: [...this.state.item,obj]
         })
     }
-    onDelete = (index) => {
+    onDelete = (x, index) => {
+        let sliced = [...this.state.item]
+        sliced.splice(index,1);
         this.setState({
-            show: false
+            item: sliced
         })
     }
     render() {
@@ -40,22 +36,23 @@ class index extends Component {
         })
         return (
             <ul  id='container'>
-                <Cart items={this.state.item} Data={this.props.Data.items}/>
-                {returned}
-                    <div id='cart-overlay'>
+            <span onClick={this.close}>+</span>
+            {returned}
+                    <div>
                         <div id="cart">
                             {
-                                !this.state.show ? '' : 
+                                this.state.item.map((x, index) => { return(
                                     <ul id='cart-item'>
-                                        <li key={this.state.item.id}>
-                                            <img src={this.state.item.img} />
+                                        <li key={x.id}>
+                                            <img src={x.img} />
                                             <div>
-                                                <h4>{this.state.item.title}</h4>
-                                                <h5>${this.state.item.price}</h5>
-                                                <span onClick={this.onDelete}>Remove</span>
+                                                <h4>{x.title}</h4>
+                                                <h5>${x.price}</h5>
+                                                <span onClick={() => this.onDelete(index)}>Remove</span>
                                             </div>
                                         </li>
-                                    </ul>
+                                    </ul>)
+                                })
                             }
                         </div>
                     </div>
