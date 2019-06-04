@@ -51,7 +51,7 @@
 #cart-item {
     display: grid;
     align-items: flex-end;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr ;
     grid-column-gap: 1.5rem;
     margin: 1.5rem 0;
     list-style-type: none;

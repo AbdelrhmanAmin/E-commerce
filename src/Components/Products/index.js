@@ -9,12 +9,18 @@ class index extends Component {
             img: x.fields.image,
             title: x.fields.title,
             price: x.fields.price,
-            id: x.sys.id
+            id: x.sys.id,
         }
         this.setState({
+            count: 1,
             show: true,
             item: [...this.state.item,obj]
         })
+    }
+    increaser = () => {
+        this.setState(prevState => {
+            return {count: prevState.count + 1}
+         })
     }
     onDelete = (x, index) => {
         let sliced = [...this.state.item]
@@ -34,24 +40,32 @@ class index extends Component {
                 </li>
             )
         })
+        let total = this.state.item.reduce((sum ,i) => (
+            Math.floor(sum += i.price * this.state.count)
+        ),0)
         return (
             <ul  id='container'>
             <span onClick={this.close}>+</span>
             {returned}
                     <div>
                         <div id="cart">
+                        <h1>Cart:</h1>
+                        <h4>Total: {total}$</h4>
                             {
                                 this.state.item.map((x, index) => { return(
-                                    <ul id='cart-item'>
-                                        <li key={x.id}>
+                                    <div id='cart-item'>
+                                    <button onClick={this.increaser}>+</button>
+                                    <span>{this.state.count}</span>
+                                    <span>-</span>
+                                        <div key={x.id}>
                                             <img src={x.img} />
                                             <div>
                                                 <h4>{x.title}</h4>
                                                 <h5>${x.price}</h5>
                                                 <span onClick={() => this.onDelete(index)}>Remove</span>
                                             </div>
-                                        </li>
-                                    </ul>)
+                                        </div>
+                                    </div>)
                                 })
                             }
                         </div>
