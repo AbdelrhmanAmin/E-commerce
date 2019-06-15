@@ -5,6 +5,17 @@ class index extends Component {
         cart: []
     }
     onAdd = (x) => {
+        let cart = [...this.state.cart]
+        let currentCartItem = cart.find(cartItem => cartItem.id == x.sys.id)
+        console.log(cart, x)
+        if(currentCartItem){
+          currentCartItem.count += 1
+
+          this.setState({ cart })
+
+          return
+        }
+
         let obj = {
             img: x.fields.image,
             title: x.fields.title,
@@ -14,16 +25,16 @@ class index extends Component {
         }
         this.setState({
             show: true,
-            cart: [...this.state.cart,obj]
+            cart: [...this.state.cart, obj]
         })
     }
     increaser = (item) => {
         let items = [...this.state.cart];
-        const newCart = items.map((x) => {
-            console.log(item , x)
-            if(x.id == item.id){
-                x.count =+1
+        const newCart = items.map((cartItem) => {
+            if(cartItem.id == item.id){
+                cartItem.count += 1
             }
+            return cartItem
         })
         this.setState({
             cart: newCart
@@ -47,6 +58,7 @@ class index extends Component {
                 </li>
             )
         })
+
         let total = this.state.cart.reduce((sum ,i) => (
             Math.floor(sum += i.price * i.count)
         ),0)
