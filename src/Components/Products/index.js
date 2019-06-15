@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './style.css';
 class index extends Component {
     state = {
-        item: []
+        cart: []
     }
     onAdd = (x) => {
         let obj = {
@@ -14,34 +14,26 @@ class index extends Component {
         }
         this.setState({
             show: true,
-            item: [...this.state.item,obj]
+            cart: [...this.state.cart,obj]
         })
     }
-    increaser = () => {
-        this.setState(prevState => ({
-            item: prevState.item.map((x) => {
-          return {
-                ...x,
-                count: x.count +1
-              }
-            })
-          }))
+    increaser = (item) => {
+        let items = [...this.state.cart];
+        const newCart = items.map((x) => {
+            console.log(item , x)
+            if(x.id == item.id){
+                x.count =+1
+            }
+        })
+        this.setState({
+            cart: newCart
+        })
     }
-    decreaser = (index) => {
-        this.setState(prevState => ({
-            item: prevState.item.map((x) => {
-          return {
-                ...x,
-                count: x[index].count - 1
-              }
-            })
-          }))
-    }
-    onDelete = (x, index) => {
-        let sliced = [...this.state.item]
+    onDelete = (index) => {
+        let sliced = [...this.state.cart]
         sliced.splice(index,1);
         this.setState({
-            item: sliced
+            cart: sliced
         })
     }
     render() {
@@ -55,24 +47,23 @@ class index extends Component {
                 </li>
             )
         })
-        let total = this.state.item.reduce((sum ,i) => (
+        let total = this.state.cart.reduce((sum ,i) => (
             Math.floor(sum += i.price * i.count)
         ),0)
         return (
             <ul  id='container'>
-            <span onClick={this.close}>+</span>
             {returned}
                     <div>
                         <div id="cart">
                         <h1>Cart:</h1>
                         <h4>Total: {total}$</h4>
                             {
-                                this.state.item.map((x, index) => { return(
-                                    <div id='cart-item'>
-                                    <button onClick={() => this.increaser(index)}>+</button>
+                                this.state.cart.map((x) => { return(
+                                    <div id='cart-item' key={x.id}>
+                                    <button onClick={() => this.increaser(x)}>+</button>
                                     <span>{x.count}</span>
                                     <button onClick={this.decreaser}>-</button>
-                                        <div key={x.id}>
+                                        <div>
                                             <img src={x.img} />
                                             <div>
                                                 <h4>{x.title}</h4>
