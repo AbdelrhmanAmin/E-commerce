@@ -81,7 +81,7 @@ class index extends Component {
             {returned}
                     <div>
                         <div id="cart">
-                        <h1>Cart:</h1>
+                        <h1>CartZien:</h1>
                         <h4>Total: {total}$</h4>
                             {
                                 this.state.cart.map((x) => { return(
