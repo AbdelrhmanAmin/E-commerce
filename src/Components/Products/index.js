@@ -7,7 +7,6 @@ class index extends Component {
     onAdd = (x) => {
         let cart = [...this.state.cart]
         let currentCartItem = cart.find(cartItem => cartItem.id == x.sys.id)
-        console.log(cart, x)
         if(currentCartItem){
           currentCartItem.count += 1
 
@@ -43,19 +42,29 @@ class index extends Component {
         let items = [...this.state.cart];
         const newCart = items.map((cartItem) => {
             if(cartItem.id == item.id){
-                cartItem.count -= 1
+                if(cartItem.count > 1){
+                    cartItem.count -= 1;
+                }
             }
             return cartItem
         })
         this.setState({
             cart: newCart
         })
+        // let cart = [...this.state.cart];
+        // cart.filter((cartItem) => cartItem.count === 0);
+        // this.setState({ cart })
     }
     onDelete = (index) => {
         let sliced = [...this.state.cart]
         sliced.splice(index,1);
         this.setState({
             cart: sliced
+        })
+    }
+    toggleCart = () => {
+        this.setState({
+            show: !this.state.show
         })
     }
     render() {
@@ -71,34 +80,46 @@ class index extends Component {
         })
         let total = this.state.cart.reduce((sum ,i) => (
             Math.floor(sum += i.price * i.count)
-        ),0)
+        ),0);
+        let style = this.state.show ? 'cart' : 'hideCart';
+        let style1 = this.state.show ? 'cartOn' : 'container';
         return (
-            <ul  id='container'>
+            <div>
+            <a href='#' onClick={this.toggleCart}><i className="fa fa-cart-plus fa-2x"></i></a>
+            <ul id={style1}>
             {returned}
-                    <div>
-                        <div id="cart">
+                        <div id={style}>
                         <h1>Cart:</h1>
                         <h4>Total: {total}$</h4>
                             {
                                 this.state.cart.map((x) => { return(
                                     <div id='cart-item' key={x.id}>
-                                    <button onClick={() => this.increaser(x)}>+</button>
-                                    <span>{x.count}</span>
-                                    <button onClick={() => this.decreaser(x)}>-</button>
-                                        <div>
+                                    <span onClick={() => this.onDelete(index)}><a href='#'><i className="fa fa-window-close fa-2x"></i></a> </span>
+                                        <ul id='counter'>
+                                            <li>                                    
+                                            <button onClick={() => this.increaser(x)}><i class="fa fa-sort-up fa-2x"></i></button>
+                                            </li>
+                                            <li>                                    
+                                                <strong>count: {x.count}</strong>
+                                            </li>
+                                            <li>                                    
+                                            <button onClick={() => this.decreaser(x)}><i class="fa fa-sort-down fa-2x"></i></button>
+                                            </li>
+                                        </ul>
+                                        <div id='inner'>
                                             <img src={x.img} />
                                             <div>
                                                 <h4>{x.title}</h4>
                                                 <h5>${x.price}</h5>
-                                                <span onClick={() => this.onDelete(index)}>Remove</span>
+                                                
                                             </div>
                                         </div>
                                     </div>)
                                 })
                             }
                         </div>
-                    </div>
-             </ul>
+                </ul>
+             </div>
         );
     }
 }
