@@ -5,9 +5,20 @@ class index extends Component {
         cart: []
     }
     onAdd = (x) => {
+        x.preventDefault();
+        let cart = [...this.state.cart]
+        let currentCartItem = cart.find(cartItem => cartItem.id == x.sys.id)
+        console.log(cart, x)
+        if(currentCartItem){
+          currentCartItem.count += 1
+
+          this.setState({ cart })
+
+          return
+        }
         let obj = {
             img: x.fields.image,
-            title: x.fields.title,
+            title : x.fields.title,
             price: x.fields.price,
             id: x.sys.id,
             count: 1,
@@ -18,18 +29,33 @@ class index extends Component {
         })
     }
     increaser = (item) => {
+        item.preventDefault();
         let items = [...this.state.cart];
-        const newCart = items.map((x) => {
-            console.log(item , x)
-            if(x.id == item.id){
-                x.count =+1
+        const newCart = items.map((cartItem) => {
+            if(cartItem.id == item.id){
+                cartItem.count += 1
             }
+            return cartItem
+        })
+        this.setState({
+            cart: newCart
+        })
+    }
+    decreaser = (item) => {
+        item.preventDefault();
+        let items = [...this.state.cart];
+        const newCart = items.map((cartItem) => {
+            if(cartItem.id == item.id){
+                cartItem.count -= 1
+            }
+            return cartItem
         })
         this.setState({
             cart: newCart
         })
     }
     onDelete = (index) => {
+        index.preventDefault();
         let sliced = [...this.state.cart]
         sliced.splice(index,1);
         this.setState({
@@ -62,7 +88,7 @@ class index extends Component {
                                     <div id='cart-item' key={x.id}>
                                     <button onClick={() => this.increaser(x)}>+</button>
                                     <span>{x.count}</span>
-                                    <button onClick={this.decreaser}>-</button>
+                                    <button onClick={() => this.decreaser(x)}>-</button>
                                         <div>
                                             <img src={x.img} />
                                             <div>
