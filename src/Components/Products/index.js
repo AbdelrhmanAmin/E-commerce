@@ -5,7 +5,6 @@ class index extends Component {
         cart: []
     }
     onAdd = (x) => {
-        x.preventDefault();
         let cart = [...this.state.cart]
         let currentCartItem = cart.find(cartItem => cartItem.id == x.sys.id)
         console.log(cart, x)
@@ -18,7 +17,7 @@ class index extends Component {
         }
         let obj = {
             img: x.fields.image,
-            title : x.fields.title,
+            title: x.fields.title,
             price: x.fields.price,
             id: x.sys.id,
             count: 1,
@@ -29,7 +28,6 @@ class index extends Component {
         })
     }
     increaser = (item) => {
-        item.preventDefault();
         let items = [...this.state.cart];
         const newCart = items.map((cartItem) => {
             if(cartItem.id == item.id){
@@ -42,7 +40,6 @@ class index extends Component {
         })
     }
     decreaser = (item) => {
-        item.preventDefault();
         let items = [...this.state.cart];
         const newCart = items.map((cartItem) => {
             if(cartItem.id == item.id){
@@ -55,7 +52,6 @@ class index extends Component {
         })
     }
     onDelete = (index) => {
-        index.preventDefault();
         let sliced = [...this.state.cart]
         sliced.splice(index,1);
         this.setState({
@@ -81,7 +77,7 @@ class index extends Component {
             {returned}
                     <div>
                         <div id="cart">
-                        <h1>CartZien:</h1>
+                        <h1>Cart:</h1>
                         <h4>Total: {total}$</h4>
                             {
                                 this.state.cart.map((x) => { return(
