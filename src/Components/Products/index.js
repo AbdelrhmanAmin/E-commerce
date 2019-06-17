@@ -40,11 +40,15 @@ class index extends Component {
     }
     decreaser = (item) => {
         let items = [...this.state.cart];
-        const newCart = items.map((cartItem) => {
+        const newCart = items.
+        map((cartItem) => {
             if(cartItem.id == item.id){
-                if(cartItem.count > 1){
                     cartItem.count -= 1;
-                }
+                    if(cartItem.count === 0){
+                        console.log('works !')
+                        Object.values(cartItem);
+                        cartItem = [];
+                    }
             }
             return cartItem
         })
