@@ -47,7 +47,7 @@ class index extends Component {
                     if(cartItem.count === 0){
                         console.log('works !')
                         Object.values(cartItem);
-                        cartItem = [];
+                        this.onDelete(cartItem)
                     }
             }
             return cartItem
@@ -87,9 +87,10 @@ class index extends Component {
         ),0);
         let style = this.state.show ? 'cart' : 'hideCart';
         let style1 = this.state.show ? 'cartOn' : 'container';
+        let style2 = this.state.show ? '' : 'cartfloat';
         return (
             <div>
-            <a href='#' onClick={this.toggleCart}><i className="fa fa-cart-plus fa-2x"></i></a>
+            <a id={style2} href='#' onClick={this.toggleCart}><i className="fa fa-cart-plus fa-2x"></i></a>
             <ul id={style1}>
             {returned}
                         <div id={style}>

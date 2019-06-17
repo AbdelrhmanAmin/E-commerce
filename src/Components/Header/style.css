@@ -1,0 +1,9 @@
+#slider {
+    padding: 150px;
+    background-color: azure;
+    background-image: url('bed.jpg');
+    background-position: center ;
+    background-size: cover;
+    margin: 10px 0;
+    z-index: 5;
+}
