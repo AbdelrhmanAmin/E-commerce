@@ -75,7 +75,7 @@ class index extends Component {
         let returned = this.props.Data.map( (x) => {
             return (
                 <li key={x.sys.id}>
-                    <img src={x.fields.image} />
+                    <a href='/1'><img src={x.fields.image} /> </a>
                     <button onClick={() => this.onAdd(x)}>Add to cart !</button>
                     <h3>{x.fields.title}</h3>
                     <h4>${x.fields.price}</h4>
@@ -112,7 +112,7 @@ class index extends Component {
                                             </li>
                                         </ul>
                                         <div id='inner'>
-                                            <img src={x.img} />
+                                            <a href='/1'><img src={x.img} /></a>
                                             <div>
                                                 <h4>{x.title}</h4>
                                                 <h5>${x.price}</h5>

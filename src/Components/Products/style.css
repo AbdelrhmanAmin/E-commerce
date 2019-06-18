@@ -19,8 +19,14 @@ a {
     list-style-type: none;
 }
 #cartOn img,#container img {
-    width: 300px;
+    max-width: 300px;
+    width: 100%;
+    transition: 0.8s ease-in-out;
 }
+#cartOn img:hover,#container img:hover {
+    filter: grayscale(80%);
+}
+
 #cartOn h3,#container h3 {
     text-transform: capitalize;
     font-size: 1.1rem;
