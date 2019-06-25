@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Catamaran&display=swap');
 #slider {
     padding: 150px;
     background-color: azure;
@@ -6,4 +8,15 @@
     background-size: cover;
     margin: 10px 0;
     z-index: 5;
+}
+#innerTxt h2{
+    font-size: 24px;
+    font-weight: 500;
+    font-family: 'PT Sans', sans-serif;
+    text-transform: uppercase;
+}
+#innerTxt h1 {
+    text-transform: uppercase;
+    font-family: 'Catamaran', sans-serif;   
+    letter-spacing: 0.5em
 }

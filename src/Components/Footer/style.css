@@ -1,0 +1,10 @@
+#foot {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#foot li a {
+    margin: 20px;
+    color: black;
+}

@@ -1,12 +1,35 @@
 a {
     color: var(--primaryColor);
 }
+#txt button{
+    grid-area: btn;
+    width: 300px;
+}
+#txt h3 {
+    grid-area: txt1;
+}
+#txt h4 {
+    grid-area: txt2;
+}
+
+#txt {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 
+    "btn btn"
+    "txt1 txt2"
+    ;
+}
 #cartfloat {
     position: absolute;
     right: 5%;
     padding: 20px;
     background-color: black;
     z-index: 1;
+}
+#cartFix {
+    padding: 20px;
+    background-color: black;
 }
 #container {
     display: grid;
@@ -68,14 +91,18 @@ a {
     transition: var(--mainTransition);
 }
 #cart-item {
-    display: grid;
-    grid-template-columns: 5px 1fr 1fr ;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
     grid-column-gap: 1.5rem;
     margin: 1.5rem 0;
     list-style-type: none;
     border: 5px solid var(--primaryColor);
     padding: 20px;
     border-radius: 5px;
+}
+#cart-item span  i {
+    margin-left: 70px;
 }
 #counter button{
     margin: 8px;

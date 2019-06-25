@@ -43,11 +43,8 @@ class index extends Component {
         const newCart = items.
         map((cartItem) => {
             if(cartItem.id == item.id){
+                if(cartItem.count > 1){
                     cartItem.count -= 1;
-                    if(cartItem.count === 0){
-                        console.log('works !')
-                        Object.values(cartItem);
-                        this.onDelete(cartItem)
                     }
             }
             return cartItem
@@ -76,9 +73,11 @@ class index extends Component {
             return (
                 <li key={x.sys.id}>
                     <a href='/1'><img src={x.fields.image} /> </a>
-                    <button onClick={() => this.onAdd(x)}>Add to cart !</button>
-                    <h3>{x.fields.title}</h3>
-                    <h4>${x.fields.price}</h4>
+                    <div id="txt">
+                        <button onClick={() => this.onAdd(x)}>Add to cart !</button>
+                        <h3>{x.fields.title}</h3>
+                        <h4>${x.fields.price}</h4>
+                    </div>
                 </li>
             )
         })
@@ -87,7 +86,7 @@ class index extends Component {
         ),0);
         let style = this.state.show ? 'cart' : 'hideCart';
         let style1 = this.state.show ? 'cartOn' : 'container';
-        let style2 = this.state.show ? '' : 'cartfloat';
+        let style2 = this.state.show ? 'cartFix' : 'cartfloat';
         return (
             <div>
             <a id={style2} href='#' onClick={this.toggleCart}><i className="fa fa-cart-plus fa-2x"></i></a>

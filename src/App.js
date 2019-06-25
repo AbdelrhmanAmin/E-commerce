@@ -10,8 +10,10 @@ import {
   Route,
   Switch,
   Redirect,
+  Link,
   withRouter
 } from 'react-router-dom';
+
 function App() {
   return (
     <Router>
@@ -20,9 +22,8 @@ function App() {
           <Route path='/' exact component={ () => {
             return <Home />
           }} />
-          <Route path='/1' exact component={ () => {
-            return <Info Data={Data.items}/>
-          }} />
+          <Route path='/1' exact component={() => 
+            <Info Data={Data.items}/>} />
 
         </Switch>
       </div>
