@@ -93,10 +93,12 @@ class index extends Component {
             <ul id={style1}>
             {returned}
                         <div id={style}>
+                        <span onClick={this.toggleCart}><a href='#'><i className="fa fa-window-close fa-2x"></i></a> </span>
                         <h1>Cart:</h1>
                         <h4>Total: {total}$</h4>
                             {
                                 this.state.cart.map((x,index) => { return(
+                                    
                                     <div id='cart-item' key={x.id}>
                                     <span onClick={() => this.onDelete(index)}><a href='#'><i className="fa fa-window-close fa-2x"></i></a> </span>
                                         <ul id='counter'>
