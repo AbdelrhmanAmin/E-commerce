@@ -23,7 +23,10 @@ function App() {
             return <Home />
           }} />
           <Route path='/1' exact component={() => 
-            <Info Data={Data.items}/>} />
+             
+              <h1>Coming soon</h1>
+            
+            } />
 
         </Switch>
       </div>
