@@ -34,11 +34,9 @@ li button{
     background-color: black;
 }
 #cartOn,#container {
-    display:flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     list-style-type: none;
-    align-items: center;
-    overflow: scroll;
     padding: 10px;
     
 }
