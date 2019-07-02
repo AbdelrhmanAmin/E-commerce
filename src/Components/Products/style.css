@@ -112,36 +112,59 @@ li button{
     transition: var(--mainTransition);
 }
 #cart-item {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    grid-column-gap: 1.5rem;
-    margin: 1.5rem 0;
+    display: grid;
+    grid-template-areas: 
+    " x inner counter";
     list-style-type: none;
     border: 1px solid var(--primaryColor);
-    /* padding: 20px; */
     background-color: #F7F7F7;
+    padding: 5px;
+    margin: 5px;
 }
-#cart-item span  a {
-    margin-left: 40px;
-    width: 1px;
+#cart-item span {
+    display: flex;
+    justify-content: flex-end;
 }
-#cart-item span   {
-    width:1px;
+#inner {
+    grid-area: inner;
+}
+#counter {
+    grid-area: counter;
+    display: grid;
+    grid-template-areas: "dec count inc";
+    align-content: center;
+    padding-left: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+#cart-item span  {
+    align-self: center;
+    grid-area: x;
+    cursor: pointer;
 }
 #counter button{
     margin: 8px;
     color: white;
     padding: 1px 10px;
     text-align: center;
-    margin: 8px 0;
-    width: 35px;
+    max-width: 35px;
+    transform: rotateZ(90deg)
+}
+.dec {
+    grid-area: dec;
+}
+.inc {
+    grid-area: inc;
+}
+#counter li {
+    align-self: center;
 }
 #counter li strong {
     border: 3px solid #bbc3c6;
-    padding: 5px 10px;
+    padding: 4px 10px;
     color: #8a8a8a;
     text-align: center;
+    grid-area: count;
 }
 #cart-item h4 {
     font-size: 0.85rem;
@@ -161,6 +184,4 @@ li button{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 15px;
-    width: 200px;
 }

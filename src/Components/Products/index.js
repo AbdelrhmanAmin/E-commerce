@@ -97,16 +97,16 @@ class index extends Component {
                             {
                                 this.state.cart.map((x,index) => { return(
                                     <div id='cart-item' key={x.id}>
-                                    <span onClick={() => this.onDelete(index)}><a href='#'><i className="fa fa-window-close fa-2x"></i></a> </span>
+                                    <span onClick={() => this.onDelete(index)}><i className="fa fa-window-close fa-2x"></i></span>
                                         <ul id='counter'>
                                             <li>                                    
-                                            <button onClick={() => this.increaser(x)}><i class="fa fa-sort-up fa-2x"></i></button>
+                                            <button onClick={() => this.decreaser(x)} className='dec'><i class="fa fa-sort-down fa-2x"></i></button>
                                             </li>
                                             <li>                                    
                                                 <strong>{x.count}</strong>
                                             </li>
                                             <li>                                    
-                                            <button onClick={() => this.decreaser(x)}><i class="fa fa-sort-down fa-2x"></i></button>
+                                            <button onClick={() => this.increaser(x)} className='inc'><i class="fa fa-sort-up fa-2x"></i></button>
                                             </li>
                                         </ul>
                                         <div id='inner'>
