@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import './style.css';
 class index extends Component {
     state = {
-        cart: []
+        cart: [],
     }
     onAdd = (x) => {
         let cart = [...this.state.cart]
-        let currentCartItem = cart.find(cartItem => cartItem.id == x.sys.id)
+        let currentCartItem = cart.find(cartItem => cartItem.id == x.id)
         if(currentCartItem){
           currentCartItem.count += 1
 
@@ -15,10 +15,10 @@ class index extends Component {
           return
         }
         let obj = {
-            img: x.fields.image,
-            title: x.fields.title,
-            price: x.fields.price,
-            id: x.sys.id,
+            img: x.image,
+            title: x.title,
+            price: x.price,
+            id: x.id,
             count: 1,
         }
         this.setState({
@@ -52,9 +52,6 @@ class index extends Component {
         this.setState({
             cart: newCart
         })
-        // let cart = [...this.state.cart];
-        // cart.filter((cartItem) => cartItem.count === 0);
-        // this.setState({ cart })
     }
     onDelete = (index) => {
         let sliced = [...this.state.cart]
@@ -71,12 +68,12 @@ class index extends Component {
     render() {
         let returned = this.props.Data.map( (x) => {
             return (
-                <li key={x.sys.id}>
-                    <a href='/1'><img src={x.fields.image} /> </a>
-                    <div id="txt">
+                <li key={x.id}>
+                    <img src={x.image} />
                         <button onClick={() => this.onAdd(x)}>Add to cart !</button>
-                        <h3>{x.fields.title}</h3>
-                        <h4>${x.fields.price}</h4>
+                    <div id="txt">
+                        <h5 className='title'>{x.title}</h5>
+                        <p className='price'>${x.price}</p>
                     </div>
                 </li>
             )
@@ -91,14 +88,14 @@ class index extends Component {
             <div>
             <a id={style2} href='#' onClick={this.toggleCart}><i className="fa fa-cart-plus fa-2x"></i></a>
             <ul id={style1}>
-            {returned}
+                {returned}
+            </ul>
                         <div id={style}>
                         <span onClick={this.toggleCart}><a href='#'><i className="fa fa-window-close fa-2x"></i></a> </span>
                         <h1>Cart:</h1>
                         <h4>Total: {total}$</h4>
                             {
                                 this.state.cart.map((x,index) => { return(
-                                    
                                     <div id='cart-item' key={x.id}>
                                     <span onClick={() => this.onDelete(index)}><a href='#'><i className="fa fa-window-close fa-2x"></i></a> </span>
                                         <ul id='counter'>
@@ -106,7 +103,7 @@ class index extends Component {
                                             <button onClick={() => this.increaser(x)}><i class="fa fa-sort-up fa-2x"></i></button>
                                             </li>
                                             <li>                                    
-                                                <strong>count: {x.count}</strong>
+                                                <strong>{x.count}</strong>
                                             </li>
                                             <li>                                    
                                             <button onClick={() => this.decreaser(x)}><i class="fa fa-sort-down fa-2x"></i></button>
@@ -114,17 +111,15 @@ class index extends Component {
                                         </ul>
                                         <div id='inner'>
                                             <a href='/1'><img src={x.img} /></a>
-                                            <div>
+                                                <div>
                                                 <h4>{x.title}</h4>
                                                 <h5>${x.price}</h5>
-                                                
-                                            </div>
+                                                </div>
                                         </div>
                                     </div>)
                                 })
                             }
                         </div>
-                </ul>
              </div>
         );
     }

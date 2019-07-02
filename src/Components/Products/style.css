@@ -1,27 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+
 a {
     color: var(--primaryColor);
 }
-#txt button{
-    grid-area: btn;
+li button{
     width: 300px;
 }
-#txt h3 {
-    grid-area: txt1;
-}
-#txt h4 {
-    grid-area: txt2;
-}
-
 #txt {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: 
-    "btn btn"
-    "txt1 txt2"
-    ;
+    grid-template-columns: 1fr;
+    justify-items: start;
+}
+#txt .title {
+    font-family: 'Quicksand', sans-serif;
+    margin: 15px 0 15px 0;
+}
+#txt .price {
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 100;
 }
 #cartfloat {
-    position: absolute;
+    position: sticky;
     right: 5%;
     padding: 20px;
     background-color: black;
@@ -31,15 +33,22 @@ a {
     padding: 20px;
     background-color: black;
 }
-#container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-#cartOn li, #container li{
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
+#cartOn,#container {
+    display:flex;
+    flex-direction: row;
     list-style-type: none;
+    align-items: center;
+    overflow: scroll;
+    padding: 10px;
+    
+}
+#counter {
+    list-style-type: none;
+}
+#cartOn li,#container li{
+    margin: 15px;
+    position: relative;
+    
 }
 #cartOn img,#container img {
     max-width: 300px;
@@ -60,7 +69,19 @@ a {
 #cartOn h4,#container h4 {
     color: var(--primaryColor);
 }
-#cartOn button,#container button {
+#counter button{
+    top: 70%;
+    background: var(--primaryColor);
+    border: none;
+    text-transform: uppercase;
+    padding: 0.5rem 0.75rem;
+    letter-spacing: var(--mainSpacing);
+    font-weight: bold;
+    transition: var(--mainTransition);
+    cursor: pointer;
+    width: 100%;
+}
+#cartOn button,#container button,#counter button {
     top: 70%;
     background: var(--primaryColor);
     border: none;
@@ -97,17 +118,29 @@ a {
     grid-column-gap: 1.5rem;
     margin: 1.5rem 0;
     list-style-type: none;
-    border: 5px solid var(--primaryColor);
-    padding: 20px;
-    border-radius: 5px;
+    border: 1px solid var(--primaryColor);
+    /* padding: 20px; */
+    background-color: #F7F7F7;
 }
-#cart-item span  i {
-    margin-left: 70px;
+#cart-item span  a {
+    margin-left: 40px;
+    width: 1px;
+}
+#cart-item span   {
+    width:1px;
 }
 #counter button{
     margin: 8px;
     color: white;
     padding: 1px 10px;
+    text-align: center;
+    margin: 8px 0;
+    width: 35px;
+}
+#counter li strong {
+    border: 3px solid #bbc3c6;
+    padding: 5px 10px;
+    color: #8a8a8a;
     text-align: center;
 }
 #cart-item h4 {
@@ -120,6 +153,14 @@ a {
     letter-spacing: var(--mainSpacing);
 }
 #cart img {
-    width: 125px;
-    height: 125px;
+    width: 3em;
+    margin-right: 5px;
+    height: 3em;
+}
+#inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+    width: 200px;
 }
