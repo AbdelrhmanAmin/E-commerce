@@ -121,7 +121,7 @@ li button{
     padding: 5px;
     margin: 5px;
 }
-#cart-item span {
+#cart span {
     display: flex;
     justify-content: flex-end;
 }
